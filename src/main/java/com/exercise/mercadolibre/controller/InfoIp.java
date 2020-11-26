@@ -9,7 +9,7 @@ public class InfoIp {
 	private String ip;
 	private String isoCode;
 	private String country;
-	private int distanceToBuenosAires;
+	private String distanceToBuenosAires;
 	private List<String> currencies;
 	private List<String> languages;
 	private List<String> times;
@@ -30,10 +30,10 @@ public class InfoIp {
 		this.country = name;
 	}
 	@JsonProperty("distance_to_Buenos_Aires_in_kms")
-	public int getDistanceToBuenosAires() {
+	public String getDistanceToBuenosAires() {
 		return distanceToBuenosAires;
 	}
-	public void setDistanceToBuenosAires(int distanceToBuenosAires) {
+	public void setDistanceToBuenosAires(String distanceToBuenosAires) {
 		this.distanceToBuenosAires = distanceToBuenosAires;
 	}
 

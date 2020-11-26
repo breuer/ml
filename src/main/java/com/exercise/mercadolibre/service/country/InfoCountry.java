@@ -62,8 +62,8 @@ public class InfoCountry {
 		this.latlng = latlng;
 	}
 	
-	public int getDistanceBuenosAiresInKilometers() {
-		if(this.getLatlng().get(0) != null && this.getLatlng().get(0) != null) {
+	public int getDistanceBsAsKilometers() {
+		if(!getLatlng().isEmpty() && getLatlng().size() == 2) {
 			Double lat = new Double(this.getLatlng().get(0));
 			Double lon = new Double(this.getLatlng().get(1));
 			return HaversineFormula.distanceBetweenBuenosAiresInKilometers(lon, lat);

@@ -60,7 +60,7 @@ class MercadolibreApplicationTests {
 	
 		Mockito.when(repository.findAll()).thenReturn(distances);
 		
-		mockMvc.perform(get("/statistics"))
+		mockMvc.perform(get("/stats"))
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 		    .andExpect(status().isOk())
 		    .andExpect(jsonPath("$.farthest_distance_to_Buenos_Aires_in_kms").value(32000.0))
@@ -99,7 +99,7 @@ class MercadolibreApplicationTests {
 		Mockito.when(currencyService.getInfoCurrency()).thenReturn(currencyRate);
 		
 		Ip ip = new Ip("14.102.240.0");
-		mockMvc.perform(post("/ips")
+		mockMvc.perform(post("/trace")
 				.content(om.writeValueAsString(ip))
 				.contentType(MediaType.APPLICATION_JSON))
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON))

@@ -75,8 +75,11 @@ public class Controller {
     	infoIp.setCurrencies(currencies);
     	
     	//distance between Buenos Aires
-    	int distance = infoCountry.getDistanceBuenosAiresInKilometers();
-    	infoIp.setDistanceToBuenosAires(distance);
+    	int distance = infoCountry.getDistanceBsAsKilometers();
+    	if(distance < 0 )
+    		infoIp.setDistanceToBuenosAires(NOT_AVAILABLE);
+    	else
+    		infoIp.setDistanceToBuenosAires(String.valueOf(distance));
     	
     	//store query
     	log.debug("save distance in repository");
