@@ -46,18 +46,17 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
     }
     
     @ExceptionHandler(HttpClientErrorException.class)
-    public void handle(HttpServletResponse response) throws IOException {
+    public void handleBadRequest(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.BAD_REQUEST.value());
-    }
-    
+    }    
     
     @ExceptionHandler(CountryNotFoundException.class)
     public ResponseEntity<CustomErrorResponse> customHandleNotFound(Exception ex, WebRequest request) {
-        CustomErrorResponse errors = new CustomErrorResponse();
-        errors.setTimestamp(LocalDateTime.now());
-        errors.setError(ex.getMessage());
-        errors.setStatus(HttpStatus.NOT_FOUND.value());
-        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+        CustomErrorResponse error = new CustomErrorResponse();
+        error.setTimestamp(LocalDateTime.now());
+        error.setError(ex.getMessage());
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
     
 

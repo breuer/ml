@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import com.exercise.mercadolibre.controller.Ip;
+import com.exercise.mercadolibre.error.CountryNotFoundException;
 import com.exercise.mercadolibre.repository.Distance;
 import com.exercise.mercadolibre.repository.DistanceRepository;
 import com.exercise.mercadolibre.service.country.CountryService;
@@ -118,5 +119,16 @@ class MercadolibreApplicationTests {
 		    .andExpect(jsonPath("$.times", hasSize(1)))
 		    .andDo(MockMvcResultHandlers.print());
 	}
-	
+		
+	@Test
+	public void post_ip_country_not_found() throws Exception {
+		Mockito.when(geolocationService.getInfoIp(Mockito.anyString())).thenThrow(CountryNotFoundException.class);
+		Ip ip = new Ip("14.102.240.0");
+		mockMvc.perform(post("/trace")
+				.content(om.writeValueAsString(ip))
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+		    .andExpect(status().isNotFound())
+		    .andDo(MockMvcResultHandlers.print());
+	}
 }
