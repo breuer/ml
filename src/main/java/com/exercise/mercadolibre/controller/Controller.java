@@ -42,7 +42,7 @@ public class Controller {
 	@Autowired
 	CurrencyService currencyService;
 	
-	@PostMapping("/ips")
+	@PostMapping("/trace")
 	InfoIp postIp(@Valid @RequestBody Ip ip) {
 		
 		//Geolocation of IPs
@@ -84,7 +84,7 @@ public class Controller {
 		return infoIp;
 	}
 	
-	@GetMapping("/statistics")
+	@GetMapping("/stats")
 	Statistics getStatistics() {
 		
 		log.debug("get statistics");
@@ -111,34 +111,6 @@ public class Controller {
 		statistics.setAverageDistance(average);
 		
 		return statistics;
-	}
-	
-	@PostMapping("/infoip")
-	public IpCountry getInfoIp(@Valid @RequestBody Ip ip)
-	{
-		IpCountry result = geolocationService.getInfoIp(ip.getIp());
-	    return result; 
-	}
-	
-    @GetMapping("/infocountry")
-	public InfoCountry getInfoCountry(String name)
-	{
-    	InfoCountry result = countryService.getInfoCountry(name);
-	    return result; 
-	}
-    
-    
-    @GetMapping("/infocurrency")
-	public CurrencyRate getInfoCurrency()
-	{
-    	CurrencyRate result = currencyService.getInfoCurrency();
-	    return result; 
-	}
-    
-    @GetMapping("/infodistances")
-	public List<Distance> getInfoDistances()
-	{
-    	return repository.findAll();
-	}
+	}	
 }
 
