@@ -11,7 +11,7 @@ public class CountryService {
 	
 	private static final Logger log = LoggerFactory.getLogger(CountryService.class);
 	
-	@Value("${api.country.name.url}")
+	@Value("${api.country.code.url}")
 	private String url;
 
 	public InfoCountry getInfoCountry(String code)
@@ -19,7 +19,7 @@ public class CountryService {
 		log.debug("Request name: "+code);
 	    String uri = url + code;
 	    RestTemplate restTemplate = new RestTemplate();
-	    InfoCountry[] result = restTemplate.getForObject(uri, InfoCountry[].class);
-	    return result[0]; 
+	    InfoCountry result = restTemplate.getForObject(uri, InfoCountry.class);
+	    return result; 
 	}
 }

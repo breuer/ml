@@ -54,7 +54,8 @@ public class Controller {
 		infoIp.setIsoCode(ipCountry.getCountryCode());
 		
 		//Country information
-    	InfoCountry infoCountry = countryService.getInfoCountry(ipCountry.getCountryName());
+    	//InfoCountry infoCountry = countryService.getInfoCountry(ipCountry.getCountryName());
+		InfoCountry infoCountry = countryService.getInfoCountry(ipCountry.getCountryCode3());
     	infoIp.setTimes(infoCountry.getTimesFromTimezones());
     	infoIp.setLanguages(infoCountry.getLanguagesStringList());
     	
