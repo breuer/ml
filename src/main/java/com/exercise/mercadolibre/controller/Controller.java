@@ -36,11 +36,11 @@ public class Controller {
 	@Autowired
 	private DistanceRepository repository;
 	@Autowired
-	GeolocationService geolocationService;
+	private GeolocationService geolocationService;
 	@Autowired
-	CountryService countryService;
+	private CountryService countryService;
 	@Autowired
-	CurrencyService currencyService;
+	private CurrencyService currencyService;
 	
 	@PostMapping("/trace")
 	InfoIp postIp(@Valid @RequestBody Ip ip) {
