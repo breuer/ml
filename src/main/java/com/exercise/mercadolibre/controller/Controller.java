@@ -115,6 +115,6 @@ public class Controller {
 		statistics.setAverageDistance(average);
 		
 		return statistics;
-	}	
+	}
 }
 
