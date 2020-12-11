@@ -1,5 +1,6 @@
 package com.exercise.mercadolibre.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -42,6 +43,8 @@ public class Controller {
 	@Autowired
 	private CurrencyService currencyService;
 	
+	private DecimalFormat df = new DecimalFormat("0.0000");
+	
 	@PostMapping("/trace")
 	InfoIp postIp(@Valid @RequestBody Ip ip) {
 		
@@ -68,7 +71,8 @@ public class Controller {
     			String rateStr = currencyRate.getRates().get(currency.getCode());
     			Double rate = new Double(rateStr);
     			Double rateInEuro = 1 / rate;
-    			currencies.add(currency.getCode() + " (1 EUR = " + rateInEuro.toString() + " " + currency.getCode() + ")");
+    			//currencies.add(currency.getCode() + " (1 EUR = " + rateInEuro.toString() + " " + currency.getCode() + ")");
+    			currencies.add(currency.getCode() + " (1 EUR = " + df.format(rateInEuro) + " " + currency.getCode() + ")");
     		} else {
     			currency.setEuroRate(NOT_AVAILABLE);
     		}
